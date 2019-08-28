@@ -1,38 +1,42 @@
 package codechef;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class RAINBOWA {
-	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int tcase= sc.nextInt();
 		
-		while(tcase-->0){
-			
-			int N=sc.nextInt();
-			int arr[] = new int[N];
-			int flag=1;
-			for(int i=0;i<N;i++){
-				arr[i]=sc.nextInt();
+		Scanner in=new Scanner(System.in);
+		int t=in.nextInt();
+		String[]ans=new String[t];
+		for(int i=0;i<t;i++){
+			int n=in.nextInt();
+			int []a=new int[n];
+			for(int j=0;j<n;j++)
+				a[j]=in.nextInt();
+			boolean is=true;
+			int s=0,l=a.length-1;
+			while(s<=l){
+				if(a[s]!=a[l])
+					is=false;
+				s++;
+				l--;
 			}
-			if(flag==1){
-				int middle=N/2;
-				for(int i=0;i<middle;i++){
-					if(arr[i] == arr[N-1-i] ){
-						continue;
-					}
-					else{
-						System.out.println("no2");
-						flag=0;
-						break;
-					}
-				}
-				if(flag==1){
-					System.out.println("yes");
-				}
-			}
-
-		}//tcase
+			if(a[n/2]!=7)
+				is=false;
+			if(is)
+				ans[i]="yes";
+			else
+				ans[i]="no";
+		}
+		
+		for(String an:ans)
+			System.out.println(an);
 	}
+
 }

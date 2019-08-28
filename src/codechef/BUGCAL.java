@@ -1,42 +1,54 @@
 package codechef;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
-//https://www.codechef.com/LTIME53/problems/BUGCAL
-
 public class BUGCAL {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int t= sc.nextInt();
+	 
+	public static void main(String args[]) throws IOException{
+	
+		int i=0,j=0,large=0;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
 		while(t-->0){
-			int a = sc.nextInt();
-			int b = sc.nextInt();
-			int result=0;
-			int multiply=1;
-			
-			while(a>0 && b>0){
-				int temp=( (a%10)+(b%10) )%10;
-				result+=multiply*temp;
-				multiply*=10;
-				a=a/10;
-				b=b/10;
-			}
-			if(a>0){
-				while(a>0){
-					result+=multiply*(a%10);
-					a/=10;
-					multiply*=10;
-				}
-			}
-			if(b>0){
-				while(b>0){
-					result+=multiply*(b%10);
-					b/=10;
-					multiply*=10;
-				}
-				
-			}
-			System.out.println(result);				
-		}		
-	}
-
-}
+		  String[] arr = br.readLine().split(" ");
+		  //int x = Integer.parseInt(arr[0]);  
+		  //int y = Integer.parseInt(arr[1]);
+		  
+	      String[] x = arr[0].split("");
+	      String[] y = arr[1].split("");
+	      
+	      StringBuilder sb = new StringBuilder("");
+	      if(x.length>y.length){
+	    	  i=x.length-1;
+	    	  j=y.length-1;
+	    	  for(i=i;j>=0;i--,j--){
+	    	    	
+	    	    	int temp = Integer.parseInt(x[i])+Integer.parseInt(y[j]);
+	    	    	String s = String.valueOf(temp); 
+	    	    	sb = sb.append(s.charAt(s.length()-1));
+	    	  }
+	    	  for(i=i;i>=0;i--){
+	    	    sb.append(x[i]);	 
+	          }
+	      }
+	      else{
+	    	  i=y.length-1;
+	    	  j=x.length-1;
+	    	  for(i=i;j>=0;i--,j--){
+	    	    	
+	    	    	int temp = Integer.parseInt(y[i])+Integer.parseInt(x[j]);
+	    	    	String s = String.valueOf(temp); 
+	    	    	sb = sb.append(s.charAt(s.length()-1));
+	    	  }
+	    	  for(i=i;i>=0;i--){
+	    	    sb.append(y[i]);	 
+	          }
+	      }
+	      String res = sb.reverse().toString();
+	      int xy = Integer.parseInt(res);
+	      System.out.println(xy);
+		 }
+	  }
+	 }
